@@ -1,16 +1,19 @@
-FROM oven/bun:latest
+FROM node:latest
 
 WORKDIR /app
 
 COPY package.json ./
 
-RUN bun install
+RUN npm install -g pnpm
+RUN pnpm install
 
-COPY src ./
+RUN mkdir src
+COPY src /app/src
 COPY .env ./
+COPY tsconfig.json ./
 
-RUN bun run build
+RUN pnpm run build
 
 EXPOSE 3000
 
-CMD ["bun", "run", "start"]
+CMD ["pnpm", "run", "start"]
