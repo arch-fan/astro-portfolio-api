@@ -1,4 +1,5 @@
 import { type FastifyInstance, type RouteShorthandOptions } from 'fastify'
+import { sendMail } from '../utils/mail'
 
 interface FormData {
   name: string
@@ -39,7 +40,7 @@ const apiRoutes = async (fastify: FastifyInstance): Promise<void> => {
     }
 
     if (!email.includes('@') ||
-       !email.includes('.')
+      !email.includes('.')
     ) {
       void reply.code(400).send({
         message: 'El email no es válido!',
@@ -47,9 +48,26 @@ const apiRoutes = async (fastify: FastifyInstance): Promise<void> => {
       })
     }
 
+    void sendMail(
+      process.env.OWNER_MAIL as string,
+      `${name} ha contactado contigo.`,
+      `
+      Nombre: ${name}
+      Email: ${email}
+      Mensaje: ${message}
+      `)
+
+    void sendMail(
+      email,
+      'Gracias por contactar conmigo',
+      `
+      Hola ${name}!
+      Gracias por contactar conmigo. Te responderé lo antes posible.
+      `)
+
     void reply.send({
       message: 'El formulario se ha enviado correctamente.',
-      color: '0a0'
+      color: '#0a0'
     })
   })
 }
