@@ -16,4 +16,6 @@ RUN pnpm run build
 
 EXPOSE 3000
 
+ENV ADDRESS=0.0.0.0 PORT=3000
+
 CMD ["pnpm", "run", "start"]
