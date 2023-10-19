@@ -50,20 +50,14 @@ const apiRoutes = async (fastify: FastifyInstance): Promise<void> => {
 
     void sendMail(
       process.env.OWNER_MAIL as string,
-      `${name} ha contactado contigo.`,
-      `
-      Nombre: ${name}
-      Email: ${email}
-      Mensaje: ${message}
-      `)
+      `${name} ha contactado contigo.`, `Nombre: ${name}
+Email: ${email}
+Mensaje: ${message}`)
 
     void sendMail(
       email,
-      'Gracias por contactar conmigo',
-      `
-      Hola ${name}!
-      Gracias por contactar conmigo. Te responderé lo antes posible.
-      `)
+      'Gracias por contactar conmigo', `Hola ${name}!
+Gracias por contactar conmigo. Te responderé lo antes posible.`)
 
     void reply.send({
       message: 'El formulario se ha enviado correctamente.',

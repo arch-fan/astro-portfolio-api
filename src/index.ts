@@ -1,10 +1,12 @@
-// src/index.ts
-
+import 'dotenv/config'
 import Fastify from 'fastify'
 import apiv1 from './routes'
+import cors from '@fastify/cors'
 
 const PORT = parseInt(process.env.PORT ?? '3000')
 const fastify = Fastify({ logger: true })
+
+void fastify.register(cors)
 
 void fastify.register(apiv1, { prefix: '/api' })
 
