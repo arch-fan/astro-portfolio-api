@@ -12,6 +12,11 @@ void fastify.register(cors, {
   origin: false
 })
 
+void fastify.register(import('@fastify/rate-limit'), {
+  max: 2,
+  timeWindow: '1 minute'
+})
+
 void fastify.register(apiv1, { prefix: '/api' })
 
 const start = async (): Promise<void> => {
