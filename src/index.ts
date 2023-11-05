@@ -13,7 +13,7 @@ void fastify.register(cors, {
 })
 
 void fastify.register(import('@fastify/rate-limit'), {
-  max: 2,
+  global: false,
   timeWindow: '1 minute',
   allowList: ['127.0.0.1']
 })

@@ -14,6 +14,12 @@ const apiRoutes = async (fastify: FastifyInstance): Promise<void> => {
 
   // Ruta para manejar el formulario
   const postOptions: RouteShorthandOptions = {
+    config: {
+      rateLimit: {
+        max: 2,
+        timeWindow: '1 minute'
+      }
+    },
     schema: {
       body: {
         type: 'object',
