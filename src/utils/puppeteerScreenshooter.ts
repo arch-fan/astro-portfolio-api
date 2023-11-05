@@ -8,7 +8,8 @@ export class PuppeteerLogic {
   async initialize (): Promise<void> {
     this.browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      headless: true
+      headless: 'new',
+      executablePath: '/usr/bin/chromium'
     })
 
     this.page = await this.browser.newPage()

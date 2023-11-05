@@ -2,6 +2,8 @@ FROM node:latest
 
 WORKDIR /app
 
+RUN apk add --no-cache chromium
+
 COPY package.json ./
 
 RUN npm install -g pnpm
